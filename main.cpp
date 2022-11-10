@@ -1,11 +1,17 @@
+/*
+04 - Arrays and text
+Homework
+by Grzegorz Potocki
+*/
+
 #include <iostream>
 #include <limits>
 
 int main ()
 {
-    //final assignments
     char choice;
-    std::cout<<"Choose an option:\n1 - Exercise 1\n2 - Exercise 2\n3 - Exercise 3\nx - exit"<<std::endl;
+    std::cout<<"Choose an option:\n1 - Exercise 1\n2 - Exercise 2\n3 - Exercise 3\n"<<std::endl;
+    std::cout<<"4 - Homework 1\n5 - Homework 2\n6 - Homework 3\nx - exit"<<std::endl;
     std::cin>>choice;
     int choice_int=static_cast<int>(choice);
     while (choice=='x' || choice=='X'){
@@ -50,15 +56,38 @@ int main ()
             std::cout<<"The mean value of the array is: "<<mean;
             break;
         }
-        case 51:{
+        case 51:{ //the hardest one of all
             char text[256];
-            int counter[];
+            int visited[256];
+            int counter;
             std::cout<<"Enter text: "<<std::endl;
             std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
             std::cin.getline(text, 100);
-            for(int i=0; i<=256; i++){
-
+            std::cout<<"statistics: "<<std::endl;
+            for(int i=0; i<text[i]; i++){
+                if(visited[i]==1){
+                    continue;
+                }
+                else {
+                    counter=0;
+                    for(int j=0; j<text[i]; j++){
+                        if(text[i]==text[j]){
+                            visited[j]=1;
+                            counter++;
+                        }
+                    }
+                }
+            std::cout<<text[i]<<": "<<counter<<std::endl;
             }
+            break;
+        }
+        case 52:{
+            break;
+        }
+        case 53:{
+            break;
+        }
+        case 54:{
             break;
         }
         default:{
