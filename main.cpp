@@ -9,12 +9,16 @@ by Grzegorz Potocki
 #include <cstdlib>
 #include <time.h>
 #include <math.h>
+#include <stdio.h>
+#include <string>
+#include <string.h>
+#include <sstream>
 
 int main ()
 {
     char choice;
     std::cout<<"Choose an option:\n1 - Exercise 1\n2 - Exercise 2\n3 - Exercise 3\n"<<std::endl;
-    std::cout<<"4 - Homework 1\n5 - Homework 2\n6 - Homework 3\nx - exit"<<std::endl;
+    std::cout<<"4 - Homework 1\n5 - Homework 2\n6 - Homework 3\n7 - Homework 4\n8 - Homework 5\nx - exit"<<std::endl;
     std::cin>>choice;
     int choice_int=static_cast<int>(choice);
     while (choice=='x' || choice=='X'){
@@ -121,9 +125,9 @@ int main ()
         }
         case 53:{
             srand(time(NULL));
-            int arr[20], a, sr;
+            int arr[20], x, l, r, mid;
             for(int i=0; i<20; i++){
-                arr[i]=rand()%20+1;
+                arr[i]=rand()%100+1;
             }
             for(int i=0; i<20; i++){
                 for(int j=1; j<20-i; j++){
@@ -132,14 +136,91 @@ int main ()
                     }
                 }
             }
+            std::cout<<"Values of array: "<<std::endl;
             for(int i=0; i<20; i++){
                 std::cout<<arr[i]<<std::endl;
             }
-            std::cout<<"Enter the value: "<<std::endl;
-            std::cin>>a;
+            std::cout<<"Enter the value: ";
+            std::cin>>x;
+            l=0, r=19;
+            while(l<=r){
+                mid=(l+r)/2;
+                if(arr[mid]==x){
+                    std::cout<<"The index in array of provided number:"<<mid;
+                    break;
+                }
+                if(arr[mid]>x){
+                    r=mid-1;
+                }
+                if(arr[mid]<x){
+                    l=mid+1;
+                }
+                if(l>r){
+                    int avg=(arr[l]+arr[r])/2;
+                    if(avg>x){
+                        std::cout<<"The index in array of nearest provided number:"<<r;
+                    }
+                    else{
+                        std::cout<<"The index in array of nearest provided number:"<<l;
+                    }
+                }
+            }
             break;
         }
         case 54:{
+            std::string sentence;   //idk whats going on just copied it and works
+            int counter=0;
+            std::cout<<"Enter the sentence: ";
+            std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+            getline(std::cin, sentence);
+            for(int i=0; sentence[i]!='\0'; i++){
+                if(sentence[i]==' ' && i!=sentence.length()-1){
+                    counter++;
+                }
+            }
+            counter ++;
+            std::string words[counter];
+            std::stringstream ss(sentence);
+            for(int i=0; i<counter; i++){
+                ss>>words[i];
+            }
+            for(int i=counter-1; i>=0; i--){
+                std::cout<<words[i]<<" ";
+            }
+            break;
+        }
+        case 55:{
+            char text[100], word;   //i hope i die soon 5;38 am
+            char *pch;
+            std::cout<<"Enter text: "<<std::endl;
+            std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+            std::cin.getline(text, 100);
+            std::cout<<"Enter word to find: "<<std::endl;
+            std::cin>>word;
+            pch=strchr(text, word);
+            while (pch!=NULL){
+                std::cout<<pch-text<<" ";
+                pch=strchr(pch+1, word);
+            }
+            break;
+        }
+        case 56:{
+            char text[100], word1, word2;
+            char *pch;
+            std::cout<<"Enter text: "<<std::endl;
+            std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+            std::cin.getline(text, 100);
+            std::cout<<"Enter first word: "<<std::endl;
+            std::cin>>word1;
+            std::cout<<"Enter second word: "<<std::endl;
+            std::cin>>word2;
+            const char * c = text.c_str();
+            const char * d = text.c_str();
+            pch = strstr (c, word1);
+            if (pch != NULL){
+                strncpy (pch, word2, 6);
+                puts (text);
+            }
             break;
         }
         default:{
