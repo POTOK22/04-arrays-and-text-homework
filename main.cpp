@@ -190,7 +190,7 @@ int main ()
             break;
         }
         case 55:{
-            char text[100], word;   //i hope i die soon 5;38 am
+            char text[100], word;
             char *pch;
             std::cout<<"Enter text: "<<std::endl;
             std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
