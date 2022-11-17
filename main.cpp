@@ -168,7 +168,7 @@ int main ()
             break;
         }
         case 54:{
-            std::string sentence;   //idk whats going on just copied it and works
+            std::string sentence;
             int counter=0;
             std::cout<<"Enter the sentence: ";
             std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
