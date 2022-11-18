@@ -13,6 +13,7 @@ by Grzegorz Potocki
 #include <string>
 #include <string.h>
 #include <sstream>
+#include <algorithm>
 
 int main ()
 {
@@ -205,22 +206,17 @@ int main ()
             break;
         }
         case 56:{
-            char text[100], word1, word2;
+            char text[100], word1[10], word2[10];
             char *pch;
-            std::cout<<"Enter text: "<<std::endl;
             std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
             std::cin.getline(text, 100);
-            std::cout<<"Enter first word: "<<std::endl;
             std::cin>>word1;
-            std::cout<<"Enter second word: "<<std::endl;
             std::cin>>word2;
-            const char * c = text.c_str();
-            const char * d = text.c_str();
-            pch = strstr (c, word1);
+            pch = strstr (text, word1);
             if (pch != NULL){
-                strncpy (pch, word2, 6);
-                puts (text);
+                strncpy (pch, word2, strlen(word2));
             }
+            std::cout<<text<<std::endl;
             break;
         }
         default:{
