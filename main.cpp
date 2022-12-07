@@ -10,7 +10,6 @@ by Grzegorz Potocki
 #include <time.h>
 #include <math.h>
 #include <stdio.h>
-#include <string>
 #include <string.h>
 #include <sstream>
 #include <algorithm>
@@ -26,7 +25,7 @@ int main ()
         return 0;
     }
     switch(choice_int) {
-        case 49:{
+        case 49:{           //assignment 1
             char text[100];
             std::cout<<"Enter text: "<<std::endl;
             std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
@@ -37,61 +36,64 @@ int main ()
             std::cout<<text<<std::endl;
             break;
         }
-        case 50:{
-            int arr[4], maxi=0, mini;
-            float mean;
-            for(int i=0; i<4; i++){
-                std::cout<<"Enter int value: "<<std::endl;
+        case 50:{           //assignment 2
+            int n, maximal=0, minimal=10000000000000;
+            float mean=0.0;
+            std::cout<<"Enter the value which is the length of the array: ";
+            std::cin>>n;
+            int arr[n];
+            for (int i=0; i<n; i++){
+                std::cout<<"Enter the value at index "<<i<<" :";
                 std::cin>>arr[i];
             }
-            for(int i=0; i<4; i++){
+            for(int i=0; i<n; i++){
                 std::cout<<arr[i]<<" ";
             }
             std::cout<<std::endl;
-            for (int i=0; i<4; i++){
-                if(arr[i]>maxi){
-                    maxi=arr[i];
+            for(int i=0; i<n; i++){
+                if(arr[i]>maximal){
+                    maximal=arr[i];
                 }
             }
-            std::cout<<"The maximal value of the array is: "<<maxi<<std::endl;
-            for (int i=0; i<4; i++){
-                if(arr[i]<mini){
-                    mini=arr[i];
+            std::cout<<"Maximal value: "<<maximal<<std::endl;
+            for(int i=0; i<n; i++){
+                if(arr[i]<minimal){
+                    minimal=arr[i];
                 }
             }
-            std::cout<<"The minimal value of the array is: "<<mini<<std::endl;
-            mean=(arr[0]+arr[1]+arr[2]+arr[3])/4.0;
-            std::cout<<"The mean value of the array is: "<<mean;
+            std::cout<<"Minimal value: "<<minimal<<std::endl;
+            for(int i=0; i<n; i++){
+                mean+=arr[i];
+            }
+            std::cout<<mean/static_cast<float>(n)<<std::endl;
             break;
         }
-        case 51:{
-            int n, counter;
-            std::cout<<"Enter value which is size of a text: "<<std::endl;
-            std::cin>>n;
-            int visited[n];
-            char text[n];
+        case 51:{           //assignment 3
+            char text[100];
             std::cout<<"Enter text: "<<std::endl;
             std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
-            std::cin.getline(text, n);
-            for(int i=0; i<n; i++){   //bubble sort; PROBLEM WHY FIRST ELEMENT OF AN ARRAY IS EMPTY
-                for(int j=1; j<n-i; j++){
+            std::cin.getline(text, 100);
+            int counter;
+            int visited[strlen(text)];
+            for(int i=0; i<strlen(text)-1; i++){              //bubble sort
+                for(int j=1; j<strlen(text)-i; j++){
                     if(text[j-1]>text[j]){
                         std::swap(text[j-1], text[j]);
                     }
                 }
             }
-            for(int i=0; i<n; i++){
+            for(int i=0; i<strlen(text); i++){
                 std::cout<<text[i]<<" ";
             }
             std::cout<<std::endl;
             std::cout<<"statistics: "<<std::endl;
-            for(int i=0; i<n; i++){     //occurrence for each character
+            for(int i=0; i<strlen(text); i++){
                 if(visited[i]==1){
                     continue;
                 }
                 else {
                     counter=0;
-                    for(int j=0; j<n; j++){
+                    for(int j=0; j<strlen(text); j++){
                         if(text[i]==text[j]){
                             visited[j]=1;
                             counter++;
@@ -102,7 +104,7 @@ int main ()
             }
             break;
         }
-        case 52:{
+        case 52:{           //homework 1
             srand(time(NULL));
             float arr_rand[20];
             for(int i=0; i<20; i++){
@@ -110,7 +112,7 @@ int main ()
             }
             int j;
             float h;
-            for (int i=1; i<20; i++){   //inserion sort
+            for (int i=1; i<20; i++){   //insertion sort
                 h=arr_rand[i];
                 j=i-1;
                 while(j>=0 && arr_rand[j]>h){
@@ -124,7 +126,7 @@ int main ()
             }
             break;
         }
-        case 53:{
+        case 53:{           //homework 2
             srand(time(NULL));
             int arr[20], x, l, r, mid;
             for(int i=0; i<20; i++){
@@ -168,7 +170,7 @@ int main ()
             }
             break;
         }
-        case 54:{
+        case 54:{           //homework 3
             std::string sentence;
             int counter=0;
             std::cout<<"Enter the sentence: ";
@@ -190,7 +192,7 @@ int main ()
             }
             break;
         }
-        case 55:{
+        case 55:{           //homework 4
             char text[100], word;
             char *pch;
             std::cout<<"Enter text: "<<std::endl;
@@ -205,14 +207,14 @@ int main ()
             }
             break;
         }
-        case 56:{
+        case 56:{           //homework 5
             char text[100], word1[10], word2[10];
             char *pch;
             std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
             std::cin.getline(text, 100);
             std::cin>>word1;
             std::cin>>word2;
-            pch = strstr (text, word1);
+            pch = strstr(text, word1);
             if (pch != NULL){
                 strncpy (pch, word2, strlen(word2));
             }
